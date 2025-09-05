@@ -152,3 +152,18 @@ python database/scripts/import_timetable_by_filename.py /path/to/csv/file.csv 1
 ## 라이선스
 
 이 프로젝트는 MIT 라이선스 하에 있습니다.
+
+
+### PEM 키 관리
+
+EC2 접속용 PEM 키는 다음 위치에 안전하게 보관됩니다:
+
+```bash
+# PEM 키 위치
+~/.ssh/keys/godingpick_ec2_key.pem
+
+# EC2 접속 방법
+ssh -i ~/.ssh/keys/godingpick_ec2_key.pem ubuntu@<EC2-IP-ADDRESS>
+```
+
+**중요**: PEM 키는 절대 GitHub에 업로드하지 마세요. `.gitignore`에 `*.pem`이 포함되어 있습니다.
