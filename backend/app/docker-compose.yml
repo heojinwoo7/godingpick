@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=hw_project001
+      - DB_USER=postgres
+      - DB_PASSWORD=!@heart_ware2@!
+      - DEBUG=true
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    networks:
+      - hw-network
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=hw_project001
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=!@heart_ware2@!
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - hw-network
+
+volumes:
+  postgres_data:
+
+networks:
+  hw-network:
+    driver: bridge
